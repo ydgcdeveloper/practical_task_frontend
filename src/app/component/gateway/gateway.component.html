@@ -1,1 +1,23 @@
-<p>gateway works!</p>
+<div class="device-container box has-background-white">
+    <p class="has-text-primary"># {{ index }}</p>
+    <table class="table is-fullwidth has-background-white-bis">
+        <tbody>
+            <tr>
+                <th>Usn:</th>
+                <td>{{ gateway?.usn }}</td>
+            </tr>
+            <tr>
+                <th>Name:</th>
+                <td>{{ gateway?.name }}</td>
+            </tr>
+            <tr>
+                <th>Ipv4:</th>
+                <td>{{ gateway?.ipv4 }}</td>
+            </tr>
+            <tr>
+                <th>Devices:</th>
+                <td>{{ gateway?.devices | json}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

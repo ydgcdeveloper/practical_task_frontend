@@ -1,1 +1,4 @@
-<p>gateway works!</p>
+<p class="has-text-centered is-size-3">Gateways</p>
+<ng-template ngFor let-gateway let-i="index" [ngForOf]="gateways">
+    <app-gateway [gateway]="gateway" [index]="i + 1"></app-gateway>
+</ng-template>

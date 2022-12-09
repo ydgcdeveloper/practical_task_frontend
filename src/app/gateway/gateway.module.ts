@@ -1,3 +1,4 @@
+import { GatewayComponent } from './../component/gateway/gateway.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -7,7 +8,8 @@ import { GatewayPage } from './gateway.page';
 
 @NgModule({
   declarations: [
-    GatewayPage
+    GatewayPage,
+    GatewayComponent
   ],
   imports: [
     CommonModule,

@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Gateway } from './../../data/gateway.interface';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-gateway',
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./gateway.component.css']
 })
 export class GatewayComponent implements OnInit {
+  @Input() gateway?: Gateway;
+  @Input() index?: number;
 
   constructor() { }
 
