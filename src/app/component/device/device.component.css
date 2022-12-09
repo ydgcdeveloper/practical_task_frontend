@@ -1,0 +1,12 @@
+.device-container{
+    margin: 24px;
+    margin-top: 0;
+    padding: 12px;
+    width: 600px;
+}
+
+tr, td{
+    margin: 8px;
+    padding: 3px;
+}
+

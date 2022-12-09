@@ -1,1 +1,4 @@
-<p>device works!</p>
+<p class="has-text-centered is-size-3">Devices</p>
+<ng-template ngFor let-device let-i="index" [ngForOf]="devices">
+    <app-device [device]="device" [index]="i + 1"></app-device>
+</ng-template>

@@ -1,1 +1,23 @@
-<p>device works!</p>
+<div class="device-container box has-background-light">
+    <p class="has-text-primary"># {{ index }}</p>
+    <table class="table is-fullwidth has-background-white-bis">
+        <tbody>
+            <tr>
+                <th>Uid:</th>
+                <td>{{ device?.uid }}</td>
+            </tr>
+            <tr>
+                <th>Vendor:</th>
+                <td>{{ device?.vendor }}</td>
+            </tr>
+            <tr>
+                <th>Status:</th>
+                <td>{{ device?.status }}</td>
+            </tr>
+            <tr>
+                <th>Created:</th>
+                <td>{{ device?.created | date: "y.MM.dd" }}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
