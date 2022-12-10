@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class IndexPage implements OnInit {
 
-  title = 'frontend';
+  title = 'My Gateways';
 
   constructor() { }
 
