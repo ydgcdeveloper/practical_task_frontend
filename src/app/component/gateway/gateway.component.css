@@ -1,8 +1,20 @@
-.device-container{
+.gateway-container{
     margin: 24px;
     margin-top: 0;
     padding: 12px;
     width: 600px;
+    opacity: 0.9;
+}
+
+.gateway-container:hover{
+    opacity: 1;
+    cursor: pointer;
+    box-shadow: 0 .1em 2em -.250em rgba(10,10,10,.1),0 0 0 2px rgba(10,10,10,.02);
+    transform: translateY(-1px);
+}
+
+.gateway-container:active{
+    box-shadow: 0 .5em 1em -.350em rgba(10,10,10,.1),0 0 0 5px rgba(10,10,10,.02);
 }
 
 tr, td{

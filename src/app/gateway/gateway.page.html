@@ -1,4 +1,21 @@
-<p class="has-text-centered is-size-3">Gateways</p>
+<div>
+    <ng-template [ngIf]="gateways.length">
+        <p class="has-text-centered is-size-3">Gateways</p>
+    </ng-template>
+
+    <button class="button is-link" (click)="goToAdd()">
+        <span class="icon is-medium">
+            <i class="fas fa-plus fa-2x"></i>
+        </span>
+        Add
+    </button>
+</div>
 <ng-template ngFor let-gateway let-i="index" [ngForOf]="gateways">
     <app-gateway [gateway]="gateway" [index]="i + 1"></app-gateway>
+</ng-template>
+
+<ng-template [ngIf]="!gateways.length">
+    <div class="not-gateways-found">
+        <h2>Not Gateways found</h2>
+    </div>
 </ng-template>
