@@ -49,13 +49,13 @@ export class EditGatewayComponent implements OnInit {
     if (this.gateway) {
       this.gatewayForm = this.formBuilder.group({
         name: [this.gateway?.name, [Validators.required]],
-        ipv4: [this.gateway?.ipv4, [Validators.required]],
+        ipv4: [this.gateway?.ipv4, [Validators.required, Validators.pattern('(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)')]],
         usn: [this.gateway?.usn, [Validators.required]],
       })
     }
   }
 
-  onSubmit() {
+  editGateway() {
     if (this.gatewayForm?.valid) {
 
       try {
@@ -81,7 +81,33 @@ export class EditGatewayComponent implements OnInit {
         console.log(error);
       }
     }
-    console.log("onSubmit()");
+    console.log("editGateway()");
   }
 
+  deleteGateway() {
+    try {
+
+      let deleteResult = confirm("Are you sure to delete this gateway?");
+
+      if (deleteResult) {
+
+        const data = {
+          query: {
+            _id: this.gateway?._id
+          },
+        }
+
+        this.gatewayService.deleteGateway({ data }).then((result) => {
+          console.log(result);
+          if (result?.data.acknowledged && result?.data.deletedCount) {
+            this.router.navigate(['gateway'])
+          }
+        })
+      }
+
+    } catch (error) {
+      console.log(error);
+    }
+    console.log('deleteGateway()');
+  }
 }
