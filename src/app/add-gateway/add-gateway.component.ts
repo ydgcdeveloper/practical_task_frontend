@@ -26,15 +26,10 @@ export class AddGatewayComponent implements OnInit {
     return this.gatewayForm?.get('ipv4');
   }
 
-  // get usn() {
-  //   return this.gatewayForm?.get('usn');
-  // }
-
   ngOnInit(): void {
     this.gatewayForm = this.formBuilder.group({
       name: [null, [Validators.required]],
-      ipv4: [null, [Validators.required]],
-      // usn: [null, [Validators.required]],
+      ipv4: [null, [Validators.required, Validators.pattern('(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)')]],
     })
   }
 
@@ -46,7 +41,6 @@ export class AddGatewayComponent implements OnInit {
         const gateway: Gateway = {
           ipv4: this.ipv4?.value,
           name: this.name?.value,
-          // usn: this.usn?.value
         }
 
         this.gatewayService.addGateway({ data: gateway }).then((result) => {
