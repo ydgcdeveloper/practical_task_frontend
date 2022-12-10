@@ -1,0 +1,26 @@
+<div class="box edit-gateway-container">
+    <h3 class="has-text-centered">Edit Gateway</h3>
+    <form *ngIf="gatewayForm" [formGroup]="gatewayForm" (ngSubmit)="onSubmit()">
+        <div class="field">
+            <label class="label">Name</label>
+            <div class="control">
+                <input formControlName="name" [ngClass]="(name?.invalid && (name?.dirty || name?.touched))?'is-danger':''" class="input is-rounded" type="text">
+            </div>
+        </div>
+        <div class="field">
+            <label class="label">Ipv4</label>
+            <div class="control">
+                <input formControlName="ipv4" [ngClass]="(ipv4?.invalid && (ipv4?.dirty || ipv4?.touched))?'is-danger':''" class="input is-rounded" type="text">
+            </div>
+        </div>
+        <div class="field">
+            <label class="label">Usn</label>
+            <div class="control">
+                <input formControlName="usn" readonly [ngClass]="(usn?.invalid && (usn?.dirty || usn?.touched))?'is-danger':''" class="input is-rounded" type="text">
+            </div>
+        </div>
+        <div class="control is-justify-content-right">
+            <button [disabled]="!gatewayForm.valid" class="button is-link" type="submit">Save</button>
+        </div>
+    </form>
+</div>
