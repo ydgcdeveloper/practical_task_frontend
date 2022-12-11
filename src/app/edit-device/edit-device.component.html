@@ -1,0 +1,36 @@
+<div class="box edit-device-container">
+    <h3 class="has-text-centered">Edit Device</h3>
+    <form *ngIf="deviceForm" [formGroup]="deviceForm" (ngSubmit)="editDevice()">
+        <div class="field">
+            <label class="label">Vendor</label>
+            <div class="control">
+                <input placeholder="The device vendor" autofocus formControlName="vendor"
+                    [ngClass]="(vendor?.invalid && (vendor?.dirty || vendor?.touched))?'is-danger':''"
+                    class="input is-rounded" type="text">
+            </div>
+        </div>
+        <div class="field">
+            <label class="label">Status</label>
+            <div class="control">
+                <label class="radio">
+                    <input type="radio" name="status" [checked]="status?.value == 'ONLINE'" (click)="updateStatus('ONLINE')">
+                    Online
+                </label>
+                <label class="radio">
+                    <input type="radio" name="status" [checked]="status?.value == 'OFFLINE'" (click)="updateStatus('OFFLINE')">
+                    Offline
+                </label>
+            </div>
+        </div>
+        <div class="field">
+            <label class="label">Created</label>
+            <div class="control">
+                <input formControlName="created" readonly class="input is-rounded" type="text">
+            </div>
+        </div>
+        <div class="control">
+            <button [disabled]="!deviceForm.valid" class="button is-link" type="submit">Save</button>
+            <!-- <button class="button is-danger" type="button" (click)="deleteDevice()">Delete</button> -->
+        </div>
+    </form>
+</div>
