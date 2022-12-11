@@ -1,0 +1,30 @@
+<div class="box add-device-container">
+    <h3 class="has-text-centered">Add new Device</h3>
+    <form *ngIf="deviceForm" [formGroup]="deviceForm" (ngSubmit)="onSubmit()">
+        <div class="field">
+            <label class="label">Vendor</label>
+            <div class="control">
+                <input placeholder="The device vendor" autofocus formControlName="vendor"
+                    [ngClass]="(vendor?.invalid && (vendor?.dirty || vendor?.touched))?'is-danger':''"
+                    class="input is-rounded" type="text">
+            </div>
+        </div>
+
+        <div class="field">
+            <label class="label">Status</label>
+            <div class="control">
+                <label class="radio">
+                    <input type="radio" name="status" (click)="updateStatus('ONLINE')">
+                    Online
+                </label>
+                <label class="radio">
+                    <input type="radio" name="status" (click)="updateStatus('OFFLINE')" checked>
+                    Offline
+                </label>
+            </div>
+        </div>
+        <div class="control is-justify-content-right">
+            <button [disabled]="!deviceForm.valid" class="button is-link" type="submit">Add</button>
+        </div>
+    </form>
+</div>
