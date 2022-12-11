@@ -45,6 +45,9 @@ export class AddGatewayComponent implements OnInit {
 
         this.gatewayService.addGateway({ data: gateway }).then((result) => {
           console.log(result);
+          if (result?.data.acknowledged && result?.data.insertedId) {
+            this.router.navigate(['gateway']);
+          }
         })
 
       } catch (error) {

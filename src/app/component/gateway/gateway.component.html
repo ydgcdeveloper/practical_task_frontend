@@ -16,7 +16,8 @@
             </tr>
             <tr>
                 <th>Devices:</th>
-                <td>{{ gateway?.devices | json}}</td>
+                <td *ngIf="gateway?.devices">{{ gateway?.devices?.length}}</td>
+                <td *ngIf="!(gateway?.devices)"> - </td>
             </tr>
         </tbody>
     </table>

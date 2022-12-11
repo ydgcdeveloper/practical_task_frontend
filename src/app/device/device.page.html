@@ -1,4 +1,24 @@
-<p class="has-text-centered is-size-3">Devices</p>
+<p>
+    <a style="color: blue;" href="/">Home</a>
+</p>
+<div>
+    <ng-template [ngIf]="devices.length">
+        <p class="has-text-centered is-size-3">Devices</p>
+    </ng-template>
+
+    <button class="button is-link" (click)="goToAdd()">
+        <span class="icon is-medium">
+            <i class="fas fa-plus fa-2x"></i>
+        </span>
+        Add
+    </button>
+</div>
 <ng-template ngFor let-device let-i="index" [ngForOf]="devices">
     <app-device [device]="device" [index]="i + 1"></app-device>
+</ng-template>
+
+<ng-template [ngIf]="!devices.length">
+    <div class="not-gateways-found">
+        <h2>Not Devices found</h2>
+    </div>
 </ng-template>

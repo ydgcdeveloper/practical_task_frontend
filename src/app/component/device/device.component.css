@@ -5,6 +5,17 @@
     width: 600px;
 }
 
+.device-container:hover{
+    opacity: 1;
+    cursor: pointer;
+    box-shadow: 0 .1em 2em -.250em rgba(10,10,10,.1),0 0 0 2px rgba(10,10,10,.02);
+    transform: translateY(-1px);
+}
+
+.device-container:active{
+    box-shadow: 0 .5em 1em -.350em rgba(10,10,10,.1),0 0 0 5px rgba(10,10,10,.02);
+}
+
 tr, td{
     margin: 8px;
     padding: 3px;

@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Device } from './../data/device.interface';
 import { DeviceService } from './../service/device/device.service';
 import { Component, OnInit } from '@angular/core';
@@ -11,13 +12,19 @@ export class DevicePage implements OnInit {
 
   public devices: Device [] = [];
 
-  constructor(private deviceService: DeviceService) { }
+  constructor(
+    private deviceService: DeviceService,
+    private router: Router
+    ) { }
 
   async ngOnInit() {
-    this.deviceService.getDevices().then((data) => {
-      this.devices = data.data;
+    this.deviceService.getDevices().then((result) => {
+      this.devices = result.data;
       console.log(this.devices);
     });
   }
 
+  goToAdd(){
+    this.router.navigate(['add-device']);
+  }
 }

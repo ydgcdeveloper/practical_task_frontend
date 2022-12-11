@@ -5,5 +5,5 @@ export interface Device {
     status?: string;
     created?: string;
     uid?: number;
-    gateway?: Gateway;
+    gateway?: any;
 }

@@ -28,7 +28,6 @@ export class GatewayService {
   }
 
   async deleteGateway(data: any): Promise<any> {
-    console.log(data);
     return await firstValueFrom(this.httpClient.delete<any>(`${environment.url}/gateway`, { body: data }));
   }
 }

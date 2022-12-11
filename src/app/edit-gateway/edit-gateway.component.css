@@ -1,3 +1,19 @@
 .edit-gateway-container{
     width: 560px;
 }
+
+div.devices{
+    background-color: rgb(246, 245, 244);
+    padding: 9px;
+}
+
+div.device:hover{
+    opacity: 1;
+    box-shadow: 0 .1em 2em -.250em rgba(10,10,10,.1),0 0 0 2px rgba(10,10,10,.02);
+    transform: translateY(-1px);
+    color: rgb(18, 18, 181);
+}
+
+div.device:active{
+    box-shadow: 0 .5em 1em -.350em rgba(10,10,10,.1),0 0 0 5px rgba(10,10,10,.02);
+}

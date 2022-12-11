@@ -1,8 +1,10 @@
+import { DeviceService } from './../service/device/device.service';
 import { GatewayService } from './../service/gateway/gateway.service';
 import { Gateway } from './../data/gateway.interface';
 import { Component, OnInit } from '@angular/core';
 import { Router, NavigationExtras, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Device } from '../data/device.interface';
 
 @Component({
   selector: 'app-edit-gateway',
@@ -13,10 +15,12 @@ export class EditGatewayComponent implements OnInit {
   id?: string;
   gateway?: Gateway;
   gatewayForm?: FormGroup;
+  devicesCount: number = 0;
 
   constructor(
     private router: Router,
     private gatewayService: GatewayService,
+    private deviceService: DeviceService,
     private formBuilder: FormBuilder,
     private activatedRoute: ActivatedRoute
   ) {
@@ -27,6 +31,9 @@ export class EditGatewayComponent implements OnInit {
     //   // this.router.navigate(['/gateway'])
     // }
     this.id = this.activatedRoute.snapshot?.queryParams['id'];
+    if (!this.id) {
+      this.router.navigate(['/gateway'])
+    }
   }
 
   get name() {
@@ -52,6 +59,9 @@ export class EditGatewayComponent implements OnInit {
         ipv4: [this.gateway?.ipv4, [Validators.required, Validators.pattern('(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)')]],
         usn: [this.gateway?.usn, [Validators.required]],
       })
+      this.devicesCount = this.gateway?.devices?.length as number;
+    } else {
+      this.router.navigate(['gateway'])
     }
   }
 
@@ -63,7 +73,6 @@ export class EditGatewayComponent implements OnInit {
         const gateway: Gateway = {
           ipv4: this.ipv4?.value,
           name: this.name?.value,
-          usn: this.usn?.value
         }
 
         const data = {
@@ -74,6 +83,9 @@ export class EditGatewayComponent implements OnInit {
         }
 
         this.gatewayService.editGateway({ data }).then((result) => {
+          if (result?.data.acknowledged && result?.data.modifiedCount) {
+            this.router.navigate(['gateway'])
+          }
           console.log(result);
         })
 
@@ -109,5 +121,62 @@ export class EditGatewayComponent implements OnInit {
       console.log(error);
     }
     console.log('deleteGateway()');
+  }
+
+  goToDevice(id: string) {
+    this.router.navigate(['edit-device'], { queryParams: { id } })
+  }
+
+  removeDevice(id: string) {
+    let removeDevice = confirm("Do you want to remove this device from the gateway?");
+
+    if (removeDevice) {
+      let devices = this.gateway?.devices?.filter((device) => {
+        return device.id != id;
+      })
+
+      try {
+
+        const gateway: Gateway = {
+          devices
+        }
+
+        const data = {
+          query: {
+            _id: this.gateway?._id
+          },
+          set: gateway
+        }
+
+        this.gatewayService.editGateway({ data }).then((result) => {
+          if (result?.data.acknowledged && result?.data.modifiedCount) {
+
+            const device: Device = {
+              gateway: null
+            }
+
+            const data = {
+              query: {
+                _id: id
+              },
+              set: device
+            }
+            this.deviceService.editDevice({ data }).then((result) => {
+              if (result?.data.acknowledged && result?.data.modifiedCount) {
+                window.location.reload()
+              }
+            })
+          }
+          console.log(result);
+        })
+
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  }
+
+  goToFree(){
+    this.router.navigate(['free-device'], { queryParams: { id: this.gateway?._id } })
   }
 }

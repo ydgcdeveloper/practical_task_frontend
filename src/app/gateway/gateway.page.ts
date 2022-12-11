@@ -14,7 +14,7 @@ export class GatewayPage implements OnInit {
 
   constructor(
     private gatewayService: GatewayService,
-    private Router: Router
+    private router: Router
   ) { }
 
   async ngOnInit() {
@@ -25,6 +25,6 @@ export class GatewayPage implements OnInit {
   }
 
   goToAdd(){
-    this.Router.navigate(['add-gateway']);
+    this.router.navigate(['add-gateway']);
   }
 }

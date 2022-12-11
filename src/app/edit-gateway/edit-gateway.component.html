@@ -20,14 +20,65 @@
         <div class="field">
             <label class="label">Usn</label>
             <div class="control">
-                <input formControlName="usn" readonly
-                    [ngClass]="(usn?.invalid && (usn?.dirty || usn?.touched))?'is-danger':''" class="input is-rounded"
-                    type="text">
+                <input formControlName="usn" readonly class="input is-rounded" type="text">
             </div>
         </div>
-        <div class="control">
-            <button [disabled]="!gatewayForm.valid" class="button is-link" type="submit">Save</button>
-            <button class="button is-danger" type="button" (click)="deleteGateway()">Delete</button>
+        <div class="field devices">
+            <div class="columns">
+                <div class="column">
+                    <label class="label">Devices: </label>
+                </div>
+                <div class="column">
+                </div>
+                <div class="column">
+                </div>
+                <div class="column">
+                </div>
+                <div class="column">
+                </div>
+                <div class="column">
+                </div>
+                <div class="column">
+                    <button *ngIf="devicesCount < 10" class="button is-small is-rounded is-link" (click)="goToFree()">+</button>
+                </div>
+            </div>
+            <!-- <div style="height: 100px; overflow-y: scroll;"> -->
+            <ng-template ngFor let-device [ngForOf]="gateway?.devices">
+                <div class="box device">
+                    <div class="columns">
+                        <div class="column">
+                            {{ device?.id }}
+                        </div>
+                        <div class="column">
+                        </div>
+                        <div class="column">
+                            <button class="button is-success is-small is-rounded"
+                                (click)="goToDevice(device?.id)">Details</button>
+                        </div>
+                        <div class="column">
+                            <button class="button is-danger is-small is-rounded"
+                                (click)="removeDevice(device?.id)">Remove</button>
+                        </div>
+                    </div>
+                </div>
+            </ng-template>
+        </div>
+        <!-- </div> -->
+        <div class="control mt-5">
+            <div class="columns">
+                <div class="column">
+                    <button [disabled]="!gatewayForm.valid" class="button is-link is-fullwidth"
+                        type="submit">Save</button>
+                </div>
+                <div class="column">
+                    <button class="button is-danger is-fullwidth is-outlined" type="button"
+                        (click)="deleteGateway()">Delete</button>
+                </div>
+                <div class="column">
+                </div>
+                <div class="column">
+                </div>
+            </div>
         </div>
     </form>
 </div>

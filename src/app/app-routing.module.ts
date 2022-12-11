@@ -8,6 +8,9 @@ const routes: Routes = [
   { path: 'gateway', loadChildren: () => import('./gateway/gateway.module').then(m => m.GatewayModule) },
   { path: 'edit-gateway', loadChildren: () => import('./edit-gateway/edit-gateway.module').then(m => m.EditGatewayModule) },
   { path: 'add-gateway', loadChildren: () => import('./add-gateway/add-gateway.module').then(m => m.AddGatewayModule) },
+  { path: 'add-device', loadChildren: () => import('./add-device/add-device.module').then(m => m.AddDeviceModule) },
+  { path: 'edit-device', loadChildren: () => import('./edit-device/edit-device.module').then(m => m.EditDeviceModule) },
+  { path: 'free-device', loadChildren: () => import('./free-device/free-device.module').then(m => m.FreeDeviceModule) },
   { path: '**', component: PageNotFoundComponent }
 ];
   

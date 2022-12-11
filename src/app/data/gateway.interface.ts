@@ -5,5 +5,5 @@ export interface Gateway {
     usn?: string;
     name?: string;
     ipv4?: string;
-    devices?: Device [];
+    devices?: any [];
 }
