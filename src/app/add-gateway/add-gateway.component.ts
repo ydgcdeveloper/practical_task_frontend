@@ -41,10 +41,10 @@ export class AddGatewayComponent implements OnInit {
         const gateway: Gateway = {
           ipv4: this.ipv4?.value,
           name: this.name?.value,
+          devices: []
         }
 
         this.gatewayService.addGateway({ data: gateway }).then((result) => {
-          console.log(result);
           if (result?.data.acknowledged && result?.data.insertedId) {
             this.router.navigate(['gateway']);
           }

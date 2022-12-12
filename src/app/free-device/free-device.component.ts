@@ -45,7 +45,7 @@ export class FreeDeviceComponent implements OnInit {
 
     if (addDevice && id) {
       let devices = this.gateway?.devices;
-      devices?.push({id});
+      devices?.push({ id });
 
       try {
 
@@ -77,7 +77,7 @@ export class FreeDeviceComponent implements OnInit {
             }
             this.deviceService.editDevice({ data }).then((result) => {
               if (result?.data.acknowledged && result?.data.modifiedCount) {
-                window.location.reload()
+                  window.location.reload()
               }
             })
           }

@@ -29,7 +29,7 @@ export class AddDeviceComponent implements OnInit {
   ngOnInit(): void {
     this.deviceForm = this.formBuilder.group({
       vendor: [null, [Validators.required]],
-      status: [null, [Validators.required,]],
+      status: ['OFFLINE', [Validators.required,]],
     })
   }
 

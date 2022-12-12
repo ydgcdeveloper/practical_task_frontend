@@ -1,4 +1,4 @@
-<h3 class="has-text-centered">Free devices</h3>
+<h3 *ngIf="freeDevices.length" class="has-text-centered">Free devices</h3>
 <ng-template ngFor let-device [ngForOf]="freeDevices">
     <div class="box">
         <div class="columns">
@@ -9,5 +9,11 @@
                 <button class="button is-success is-small" (click)="addDeviceToGateway(device?._id)">Select</button>
             </div>
         </div>
+    </div>
+</ng-template>
+
+<ng-template [ngIf]="!freeDevices.length">
+    <div class="not-free-found">
+        <h2>Not Free Devices found</h2>
     </div>
 </ng-template>

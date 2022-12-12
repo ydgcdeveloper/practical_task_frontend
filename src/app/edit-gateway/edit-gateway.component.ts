@@ -59,7 +59,7 @@ export class EditGatewayComponent implements OnInit {
         ipv4: [this.gateway?.ipv4, [Validators.required, Validators.pattern('(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)')]],
         usn: [this.gateway?.usn, [Validators.required]],
       })
-      this.devicesCount = this.gateway?.devices?.length as number;
+      this.devicesCount = this.gateway?.devices?.length as number || 0;
     } else {
       this.router.navigate(['gateway'])
     }
